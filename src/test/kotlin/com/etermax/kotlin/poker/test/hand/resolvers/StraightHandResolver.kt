@@ -1,4 +1,4 @@
-package com.etermax.kotlin.poker.test.hand
+package com.etermax.kotlin.poker.test.hand.resolvers
 
 import com.etermax.kotlin.poker.domain.card.PokerCardFactory
 import com.etermax.kotlin.poker.domain.hand.HandResolver
@@ -11,28 +11,27 @@ import org.jetbrains.spek.api.dsl.given
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
 
-class ThreeOfAKindResolverTest : Spek({
 
-    describe("a hand with three of a kind is resolved") {
-        given("A hand with three of a kind") {
-            val hand = createThreeOfAKindCardsHand()
+class StraightHandResolver: Spek({
+    describe("a hand with straight is resolved") {
+        given("A hand with straight") {
+            val hand = createStraightCardsHand()
 
-            on("check if hand has three of a kind") {
+            on("check if hand has straight") {
                 val handResolver = HandResolver()
                 val highCardValue = handResolver.resolve(hand)
 
-                it("finds three of a kind") {
-                    highCardValue `should equal to` 300
+                it("finds the straight") {
+                    highCardValue `should equal to` 400
                 }
             }
         }
     }
-
 })
 
-private fun createThreeOfAKindCardsHand(): PokerHand {
+private fun createStraightCardsHand(): PokerHand {
     val pokerCardFactory = PokerCardFactory()
     val pokerHandFactory = PokerHandFactory(pokerCardFactory)
 
-    return pokerHandFactory.createFrom(listOf("2H", "2C", "2D", "3S", "KC"))
+    return pokerHandFactory.createFrom(listOf("2H", "3C", "4D", "5S", "6C"))
 }

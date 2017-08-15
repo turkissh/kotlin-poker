@@ -1,4 +1,4 @@
-package com.etermax.kotlin.poker.test.hand
+package com.etermax.kotlin.poker.test.hand.resolvers
 
 import com.etermax.kotlin.poker.domain.card.PokerCardFactory
 import com.etermax.kotlin.poker.domain.hand.HandResolver
@@ -12,28 +12,26 @@ import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
 
 
-class TwoPairsResolverTest : Spek({
+class RoyalFlushResolverTest: Spek({
+    describe("a hand with royal flush is resolved") {
+        given("A hand with royal flush") {
+            val hand = createStraightFlushCardsHand()
 
-    describe("a hand with two pairs is resolved") {
-        given("A hand with two pairs") {
-            val hand = createTwoPairsCardsHand()
-
-            on("check if hand has a pair") {
+            on("check if hand has royal flush") {
                 val handResolver = HandResolver()
                 val highCardValue = handResolver.resolve(hand)
 
-                it("finds two pairs") {
-                    highCardValue `should equal to` 200
+                it("finds the royal flush") {
+                    highCardValue `should equal to` 900
                 }
             }
         }
     }
-
 })
 
-private fun createTwoPairsCardsHand(): PokerHand {
+private fun createStraightFlushCardsHand(): PokerHand {
     val pokerCardFactory = PokerCardFactory()
     val pokerHandFactory = PokerHandFactory(pokerCardFactory)
 
-    return pokerHandFactory.createFrom(listOf("2H", "3C", "2D", "3S", "KC"))
+    return pokerHandFactory.createFrom(listOf("TH", "JH", "QH", "KH", "AH"))
 }

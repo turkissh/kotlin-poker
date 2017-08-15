@@ -5,8 +5,8 @@ import com.etermax.kotlin.poker.domain.hand.PokerHand
 
 class RoundResolver(val handResolver: HandResolver) {
     fun compareHands(playerOneHand: PokerHand, playerTwoHand: PokerHand): Int {
-        val playerOneHigherCard = handResolver.resolve(playerOneHand)
-        val playerTwoHigherCard = handResolver.resolve(playerTwoHand)
-        return playerOneHigherCard.compareTo(playerTwoHigherCard)
+        val playerOneHandPoints = handResolver.resolve(playerOneHand)
+        val playerTwoHandPoints = handResolver.resolve(playerTwoHand)
+        return if (playerOneHandPoints > playerTwoHandPoints) 1 else 2
     }
 }

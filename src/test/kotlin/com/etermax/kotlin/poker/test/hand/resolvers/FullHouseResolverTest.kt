@@ -1,4 +1,4 @@
-package com.etermax.kotlin.poker.test.hand
+package com.etermax.kotlin.poker.test.hand.resolvers
 
 import com.etermax.kotlin.poker.domain.card.PokerCardFactory
 import com.etermax.kotlin.poker.domain.hand.HandResolver
@@ -12,26 +12,26 @@ import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
 
 
-class FourOfAKindResolverTest : Spek({
-    describe("a hand with four of a kind is resolved") {
-        given("A hand with four of a kind") {
-            val hand = createFourOfAKindCardsHand()
+class FullHouseResolverTest: Spek({
+    describe("a hand with full house is resolved") {
+        given("A hand with full house") {
+            val hand = createFullHouseCardsHand()
 
-            on("check if hand has four of a kind") {
+            on("check if hand has full house") {
                 val handResolver = HandResolver()
                 val highCardValue = handResolver.resolve(hand)
 
-                it("finds the four of a kind") {
-                    highCardValue `should equal to` 700
+                it("finds the full house") {
+                    highCardValue `should equal to` 600
                 }
             }
         }
     }
 })
 
-private fun createFourOfAKindCardsHand(): PokerHand {
+private fun createFullHouseCardsHand(): PokerHand {
     val pokerCardFactory = PokerCardFactory()
     val pokerHandFactory = PokerHandFactory(pokerCardFactory)
 
-    return pokerHandFactory.createFrom(listOf("3H", "3C", "3S", "3D", "5S"))
+    return pokerHandFactory.createFrom(listOf("3H", "3C", "3S", "5H", "5S"))
 }

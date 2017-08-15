@@ -20,10 +20,10 @@ class RoundResolverTest : Spek({
 
             on("check which player has higher hand") {
                 val roundResolver = RoundResolver(HandResolver())
-                val handComparison = roundResolver.compareHands(playerOneHand, playerTwoHand)
+                val playerWinner = roundResolver.compareHands(playerOneHand, playerTwoHand)
 
                 it("resolve player one has higher card") {
-                    handComparison `should equal to` 1
+                    playerWinner `should equal to` 1
                 }
             }
         }
@@ -36,10 +36,10 @@ class RoundResolverTest : Spek({
 
             on("check which player has higher hand") {
                 val roundResolver = RoundResolver(HandResolver())
-                val handComparison = roundResolver.compareHands(playerOneHand, playerTwoHand)
+                val playerWinner = roundResolver.compareHands(playerOneHand, playerTwoHand)
 
                 it("resolve player two has higher card") {
-                    handComparison `should equal to` -1
+                    playerWinner `should equal to` 2
                 }
             }
         }

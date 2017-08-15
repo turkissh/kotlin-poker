@@ -34,4 +34,24 @@ class PokerCard(val number: String, val suit: Suit) {
         }
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other?.javaClass != javaClass) return false
+
+        other as PokerCard
+
+        if (number != other.number) return false
+        if (suit != other.suit) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = number.hashCode()
+        result = 31 * result + suit.hashCode()
+        return result
+    }
+
+
+
 }

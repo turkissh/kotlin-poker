@@ -1,4 +1,4 @@
-package com.etermax.kotlin.poker.test.hand
+package com.etermax.kotlin.poker.test.hand.resolvers
 
 import com.etermax.kotlin.poker.domain.card.PokerCardFactory
 import com.etermax.kotlin.poker.domain.hand.HandResolver
